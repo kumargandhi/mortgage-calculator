@@ -1,0 +1,97 @@
+<form
+    class="needs-validation"
+    [formGroup]="form"
+    [class.was-validated]="isFormSubmitted"
+>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label for="loanAmount" class="form-label">Loan amount:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="loanAmount"
+                    placeholder="Enter loan amount..."
+                    formControlName="loanAmount"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted &&
+                            form.controls['loanAmount'].errors
+                    }"
+                    required
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['loanAmount'].errors?.required"
+                >
+                    Loan amount cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['loanAmount'].errors?.pattern"
+                >
+                    Loan amount must be a positive integer
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="interestRate" class="form-label"
+                    >Yearly interest rate:</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="interestRate"
+                    placeholder="Enter interest rate..."
+                    formControlName="interestRate"
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['interestRate'].errors?.required"
+                >
+                    Interest rate cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['interestRate'].errors?.pattern"
+                >
+                    Interest rate must be a positive integer
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="loanTerm" class="form-label"
+                    >Loan term (Years):</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    id="loanTerm"
+                    placeholder="Enter term..."
+                    formControlName="loanTerm"
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['loanTerm'].errors?.required"
+                >
+                    Loan term cannot be empty
+                </div>
+                <div
+                    class="invalid-feedback"
+                    *ngIf="form.controls['loanTerm'].errors?.pattern"
+                >
+                    Loan term must be a positive integer
+                </div>
+            </div>
+            <div class="col-12">
+                <button
+                    class="btn btn-primary float-end"
+                    type="submit"
+                    (click)="validateForm()"
+                >
+                    Submit form
+                </button>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</form>
