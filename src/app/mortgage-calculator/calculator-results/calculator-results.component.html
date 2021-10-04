@@ -1,9 +1,47 @@
-<h6>Results</h6>
-<div class="row" *ngIf="computedValues?.monthlyPayment">
-    <div class="col-md-12">
-        <span>
-            {{ computedValues.monthlyPayment }}
-        </span>
-        - is your monthly payment.
+<div
+    class="results-container"
+    *ngIf="resultsCalculated && !errorModel.errorMsg"
+>
+    <h5 class="">Results</h5>
+    <div class="row">
+        <div class="col-md-12">
+            <span class="text-success fw-bold">
+                {{ computedValues?.monthlyPayment }}
+            </span>
+            - is your monthly payment.
+        </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <span class="text-success fw-bold">
+                {{ totalInterestPaid }}
+            </span>
+            - is total Interest Paid.
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Month</th>
+                <th scope="col">Interest</th>
+                <th scope="col">Principal</th>
+                <th scope="col">Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of monthlyPayments">
+                <th scope="row">{{ item.monthlyResult?.month }}</th>
+                <td>{{ item.monthlyResult?.interest }}</td>
+                <td>{{ item.monthlyResult?.principal }}</td>
+                <td>{{ item.monthlyResult?.balance }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div
+    *ngIf="resultsCalculated && errorModel.errorMsg"
+    class="alert alert-danger"
+    role="alert"
+>
+    {{ errorModel.errorMsg }}
 </div>

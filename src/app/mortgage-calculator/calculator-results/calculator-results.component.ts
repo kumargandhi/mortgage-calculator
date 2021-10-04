@@ -1,17 +1,37 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Input,
+    OnInit,
+} from '@angular/core';
+import * as _ from 'lodash';
 import { CalculatorInputsInterface } from '../calculator-inputs/calculator-inputs.interface';
+import { formatMoney, getBalance, getMonthlyPayment } from '../helpers';
+import { MonthlyPayment } from './calculator-results.interface';
 
 @Component({
     selector: 'app-calculator-results',
     templateUrl: './calculator-results.component.html',
     styleUrls: ['./calculator-results.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalculatorResultsComponent implements OnInit {
     _calculatorInputs!: CalculatorInputsInterface;
 
     computedValues!: CalculatorInputsInterface;
 
-    constructor() {}
+    errorModel = {
+        errorMsg: '',
+    };
+
+    monthlyPayments: MonthlyPayment[] = [];
+
+    totalInterestPaid = 0;
+
+    resultsCalculated = false;
+
+    constructor(private _cd: ChangeDetectorRef) {}
 
     ngOnInit(): void {}
 
@@ -27,33 +47,52 @@ export class CalculatorResultsComponent implements OnInit {
      * Calculate monthly interest, total months of loan term, monthly payment.
      */
     calculate() {
+        this.resultsCalculated = false;
+        this.monthlyPayments = [];
+        this.errorModel.errorMsg = '';
         this.computedValues = {
             loanAmount: this._calculatorInputs.loanAmount,
             interestRate: this._calculatorInputs.interestRate / 100 / 12,
             loanTerm: this._calculatorInputs.loanTerm * 12,
         };
-        this.computedValues.monthlyPayment = this.getMonthlyPayment(
+        this.computedValues.monthlyPayment = getMonthlyPayment(
             this.computedValues.loanAmount,
             this.computedValues.interestRate,
             this.computedValues.loanTerm
         );
-    }
+        let month = 0;
+        let totalInterestPaid = 0;
+        let loanAmount = this.computedValues.loanAmount;
+        let balance = 0;
+        do {
+            month = month + 1;
+            let monthlyPayment: MonthlyPayment = getBalance(
+                loanAmount,
+                this.computedValues.interestRate,
+                this.computedValues.monthlyPayment,
+                month,
+                totalInterestPaid
+            );
+            balance = monthlyPayment.balance;
+            this.monthlyPayments.push(monthlyPayment);
+            totalInterestPaid = monthlyPayment.totalInterest;
 
-    /**
-     * Calculate monthly payment of the loan
-     * @param loanAmount
-     * @param interest
-     * @param period
-     */
-    getMonthlyPayment(loanAmount: number, interest: number, period: number) {
-        let monthlyPayment = 0;
-
-        monthlyPayment =
-            loanAmount *
-            ((interest * Math.pow(1 + interest, period)) /
-                (Math.pow(1 + interest, period) - 1));
-        monthlyPayment = Math.round(monthlyPayment * 100) / 100;
-
-        return monthlyPayment;
+            if (balance < loanAmount) {
+                loanAmount = balance;
+            } else {
+                this.errorModel.errorMsg =
+                    'With The Loan Term ' +
+                    this._calculatorInputs.loanTerm +
+                    ' Years and Interest Rate ' +
+                    this._calculatorInputs.interestRate +
+                    '%, its' +
+                    ' not possible to pay off mortgage loan.';
+            }
+        } while (balance > 0);
+        if (_.isEmpty(this.errorModel.errorMsg)) {
+            this.totalInterestPaid = formatMoney(totalInterestPaid);
+        }
+        this._cd.markForCheck();
+        this.resultsCalculated = true;
     }
 }

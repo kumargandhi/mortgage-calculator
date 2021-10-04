@@ -1,3 +1,6 @@
+<div *ngIf="form?.invalid" class="alert alert-info" role="alert">
+    Enter values in the form and click submit to compute the monthly payments.
+</div>
 <form
     class="needs-validation"
     [formGroup]="form"
