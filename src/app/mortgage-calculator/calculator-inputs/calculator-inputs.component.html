@@ -4,8 +4,8 @@
     [class.was-validated]="isFormSubmitted"
 >
     <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
             <div class="mb-3">
                 <label for="loanAmount" class="form-label">Loan amount:</label>
                 <input
@@ -44,6 +44,12 @@
                     id="interestRate"
                     placeholder="Enter interest rate..."
                     formControlName="interestRate"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted &&
+                            form.controls['interestRate'].errors
+                    }"
+                    required
                 />
                 <div
                     class="invalid-feedback"
@@ -68,6 +74,11 @@
                     id="loanTerm"
                     placeholder="Enter term..."
                     formControlName="loanTerm"
+                    [ngClass]="{
+                        'is-invalid':
+                            isFormSubmitted && form.controls['loanTerm'].errors
+                    }"
+                    required
                 />
                 <div
                     class="invalid-feedback"
@@ -88,10 +99,10 @@
                     type="submit"
                     (click)="validateForm()"
                 >
-                    Submit form
+                    Submit
                 </button>
             </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-1"></div>
     </div>
 </form>

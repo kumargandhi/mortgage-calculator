@@ -2,27 +2,27 @@
 
 html,
 body {
-  margin: 0;
-  overflow: hidden;
-  width: 100vw !important;
-  height: 100vh !important;
+    margin: 0;
+    overflow: hidden;
+    width: 100vw !important;
+    height: 100vh !important;
 }
 
 //This is the main application container ID, includes the application header
 #page-container {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  overflow-y: hidden;
-  background: #ededed;
-  & > #page-title {
-    background-color: inherit;
-    color: #3793FF;
-    margin: 0 !important;
-    padding-right: 15px;
-    padding-bottom: 15px;
-  }
-  & > #page-title.gray {
-    background-color: #f5f5f5 !important;
-  }
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow-y: hidden;
+    background: #ededed;
+    & > #page-title {
+        background-color: inherit;
+        color: #3793ff;
+        margin: 0 !important;
+        padding-right: 15px;
+        padding-bottom: 15px;
+    }
+    & > #page-title.gray {
+        background-color: #f5f5f5 !important;
+    }
 }

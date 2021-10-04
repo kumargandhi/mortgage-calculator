@@ -2,12 +2,15 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    EventEmitter,
     OnInit,
+    Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DestroyService } from '../../service/destroy.service';
 import { takeUntil } from 'rxjs/operators';
 import { INTEGER_REGEXP } from '../../constants';
+import { CalculatorInputsInterface } from './calculator-inputs.interface';
 
 @Component({
     selector: 'app-calculator-inputs',
@@ -17,6 +20,8 @@ import { INTEGER_REGEXP } from '../../constants';
     providers: [DestroyService],
 })
 export class CalculatorInputsComponent implements OnInit {
+    @Output() inputsSubmitted = new EventEmitter<CalculatorInputsInterface>();
+
     form: FormGroup;
 
     isFormSubmitted = false;
@@ -60,12 +65,20 @@ export class CalculatorInputsComponent implements OnInit {
 
     validateForm() {
         this.isFormSubmitted = true;
+        if (this.form.valid) {
+            const { loanAmount, interestRate, loanTerm } = this.form.controls;
+            this.inputsSubmitted.emit({
+                loanAmount: loanAmount.value,
+                interestRate: interestRate.value,
+                loanTerm: loanTerm.value,
+            });
+        }
     }
 
     onValueChanged(data?: any) {
         if (!data) {
             return;
         }
-        // Do something
+        // Do something!
     }
 }

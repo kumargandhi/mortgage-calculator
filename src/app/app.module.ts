@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MortgageCalculatorComponent } from './mortgage-calculator/mortgage-calculator.component';
 import { CalculatorInputsComponent } from './mortgage-calculator/calculator-inputs/calculator-inputs.component';
+import { CalculatorResultsComponent } from './mortgage-calculator/calculator-results/calculator-results.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         MortgageCalculatorComponent,
         CalculatorInputsComponent,
+        CalculatorResultsComponent,
     ],
     imports: [
         BrowserModule,

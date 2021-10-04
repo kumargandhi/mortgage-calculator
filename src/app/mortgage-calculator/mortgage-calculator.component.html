@@ -1,1 +1,14 @@
-<app-calculator-inputs></app-calculator-inputs>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <app-calculator-inputs
+            (inputsSubmitted)="inputsSubmitted($event)"
+        ></app-calculator-inputs>
+    </div>
+    <div class="col-md-5">
+        <app-calculator-results
+            [calculatorInputs]="calculatorInputs"
+        ></app-calculator-results>
+    </div>
+    <div class="col-md-1"></div>
+</div>
