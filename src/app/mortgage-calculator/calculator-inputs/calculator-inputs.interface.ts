@@ -1,6 +1,6 @@
 export class CalculatorInputsInterface {
-    loanAmount = 0;
-    interestRate = 0;
-    loanTerm = 0;
+    loanAmount!: number;
+    interestRate!: number;
+    loanTerm!: number;
     monthlyPayment?: number;
 }

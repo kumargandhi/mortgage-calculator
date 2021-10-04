@@ -7,10 +7,9 @@ import { CalculatorInputsInterface } from '../calculator-inputs/calculator-input
     styleUrls: ['./calculator-results.component.scss'],
 })
 export class CalculatorResultsComponent implements OnInit {
-    _calculatorInputs: CalculatorInputsInterface =
-        new CalculatorInputsInterface();
+    _calculatorInputs!: CalculatorInputsInterface;
 
-    computedValues: CalculatorInputsInterface = new CalculatorInputsInterface();
+    computedValues!: CalculatorInputsInterface;
 
     constructor() {}
 

@@ -8,8 +8,7 @@ import { CalculatorInputsInterface } from './calculator-inputs/calculator-inputs
     styleUrls: ['./mortgage-calculator.component.scss'],
 })
 export class MortgageCalculatorComponent implements OnInit {
-    calculatorInputs: CalculatorInputsInterface =
-        new CalculatorInputsInterface();
+    calculatorInputs!: CalculatorInputsInterface;
 
     constructor() {}
 
