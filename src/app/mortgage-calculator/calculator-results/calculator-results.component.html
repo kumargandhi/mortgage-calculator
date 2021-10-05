@@ -3,7 +3,7 @@
     *ngIf="resultsCalculated && !errorModel.errorMsg"
 >
     <h5 class="text-secondary">Repayment summary</h5>
-    <div class="row">
+    <div class="row pt-2">
         <div class="col-md-12 text-end">
             <span class="text-primary fw-bold">
                 {{ computedValues?.monthlyPayment | nf }}
@@ -11,7 +11,7 @@
             - is your monthly payment.
         </div>
     </div>
-    <div class="row mt-1">
+    <div class="row pt-2">
         <div class="col-md-12 text-end">
             <span class="text-primary fw-bold">
                 {{ totalInterestPaid | nf }}
@@ -19,7 +19,7 @@
             - is the total interest paid.
         </div>
     </div>
-    <h6 class="text-secondary text-center mt-3">Payment information</h6>
+    <h6 class="text-secondary text-center pt-2">Payment information</h6>
     <table class="table table-borderless table-striped mt-1">
         <thead>
             <tr>
