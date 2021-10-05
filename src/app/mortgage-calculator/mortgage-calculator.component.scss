@@ -1,4 +1,9 @@
+$container-height: 86vh;
+
 .results-container {
-    height: 86vh;
+    height: $container-height;
     overflow: auto;
+}
+.vr {
+    height: $container-height;
 }

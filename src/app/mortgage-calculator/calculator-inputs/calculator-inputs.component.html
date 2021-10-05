@@ -2,13 +2,14 @@
     Enter values in the form and click submit to compute the monthly payments.
 </div>
 <form
-    class="needs-validation"
+    class="needs-validation shadow"
     [formGroup]="form"
     [class.was-validated]="isFormSubmitted"
 >
+    <h5 class="text-secondary">Loan details</h5>
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
             <div class="mb-3">
                 <label for="loanAmount" class="form-label">Loan amount:</label>
                 <input
@@ -64,7 +65,7 @@
                     class="invalid-feedback"
                     *ngIf="form.controls['interestRate'].errors?.pattern"
                 >
-                    Interest rate must be a positive integer
+                    Interest rate must be a positive integer or decimal
                 </div>
             </div>
             <div class="mb-3">
@@ -102,10 +103,10 @@
                     type="submit"
                     (click)="validateForm()"
                 >
-                    Submit
+                    Calculate
                 </button>
             </div>
         </div>
-        <div class="col-md-1"></div>
+        <div class="col-md-3"></div>
     </div>
 </form>

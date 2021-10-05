@@ -91,6 +91,9 @@ export class CalculatorResultsComponent implements OnInit {
         } while (balance > 0);
         if (_.isEmpty(this.errorModel.errorMsg)) {
             this.totalInterestPaid = formatMoney(totalInterestPaid);
+            this.computedValues.monthlyPayment = formatMoney(
+                this.computedValues?.monthlyPayment
+            );
         }
         this._cd.markForCheck();
         this.resultsCalculated = true;

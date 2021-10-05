@@ -9,7 +9,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DestroyService } from '../../service/destroy.service';
 import { takeUntil } from 'rxjs/operators';
-import { INTEGER_REGEXP } from '../../constants';
+import { INTEGER_REGEXP, FLOATING_REGEXP } from '../../constants';
 import { CalculatorInputsInterface } from './calculator-inputs.interface';
 
 @Component({
@@ -33,21 +33,21 @@ export class CalculatorInputsComponent implements OnInit {
     ) {
         this.form = this._fb.group({
             loanAmount: [
-                null,
+                800000,
                 Validators.compose([
                     Validators.required,
                     Validators.pattern(INTEGER_REGEXP),
                 ]),
             ],
             interestRate: [
-                null,
+                5.5,
                 Validators.compose([
                     Validators.required,
-                    Validators.pattern(INTEGER_REGEXP),
+                    Validators.pattern(FLOATING_REGEXP),
                 ]),
             ],
             loanTerm: [
-                null,
+                7,
                 Validators.compose([
                     Validators.required,
                     Validators.pattern(INTEGER_REGEXP),
@@ -61,7 +61,9 @@ export class CalculatorInputsComponent implements OnInit {
             });
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.validateForm();
+    }
 
     validateForm() {
         this.isFormSubmitted = true;
