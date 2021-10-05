@@ -6,7 +6,6 @@ import { MonthlyPayment } from './calculator-results/calculator-results.interfac
  * @param n
  */
 export function formatMoney(n: number) {
-    // .replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
     return _.toNumber(n.toFixed(2));
 }
 

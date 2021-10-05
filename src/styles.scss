@@ -26,3 +26,10 @@ body {
         background-color: #f5f5f5 !important;
     }
 }
+
+.data-container {
+    border: 1px solid var(--bs-success);
+    padding: 15px;
+    border-radius: 25px;
+    background: #f5f5f5;
+}

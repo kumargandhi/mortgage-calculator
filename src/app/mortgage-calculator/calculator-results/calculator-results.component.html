@@ -1,12 +1,12 @@
 <div
-    class="results-container shadow"
+    class="data-container shadow"
     *ngIf="resultsCalculated && !errorModel.errorMsg"
 >
     <h5 class="text-secondary">Repayment summary</h5>
     <div class="row">
         <div class="col-md-12 text-end">
             <span class="text-primary fw-bold">
-                {{ computedValues?.monthlyPayment }}
+                {{ computedValues?.monthlyPayment | nf }}
             </span>
             - is your monthly payment.
         </div>
@@ -14,12 +14,13 @@
     <div class="row mt-1">
         <div class="col-md-12 text-end">
             <span class="text-primary fw-bold">
-                {{ totalInterestPaid }}
+                {{ totalInterestPaid | nf }}
             </span>
             - is the total interest paid.
         </div>
     </div>
-    <table class="table table-striped mt-3">
+    <h6 class="text-secondary text-center mt-3">Payment information</h6>
+    <table class="table table-borderless table-striped mt-1">
         <thead>
             <tr>
                 <th scope="col">Month</th>
@@ -31,9 +32,9 @@
         <tbody>
             <tr *ngFor="let item of monthlyPayments">
                 <th scope="row">{{ item.monthlyResult?.month }}</th>
-                <td>{{ item.monthlyResult?.interest }}</td>
-                <td>{{ item.monthlyResult?.principal }}</td>
-                <td>{{ item.monthlyResult?.balance }}</td>
+                <td>{{ item.monthlyResult?.interest | nf }}</td>
+                <td>{{ item.monthlyResult?.principal | nf }}</td>
+                <td>{{ item.monthlyResult?.balance | nf }}</td>
             </tr>
         </tbody>
     </table>
