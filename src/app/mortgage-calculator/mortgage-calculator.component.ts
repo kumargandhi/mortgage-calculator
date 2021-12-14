@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import { CalculatorInputsInterface } from './calculator-inputs/calculator-inputs.interface';
 
@@ -8,6 +8,8 @@ import { CalculatorInputsInterface } from './calculator-inputs/calculator-inputs
     styleUrls: ['./mortgage-calculator.component.scss'],
 })
 export class MortgageCalculatorComponent implements OnInit {
+    @Input() title: string = '';
+
     calculatorInputs!: CalculatorInputsInterface;
 
     constructor() {}

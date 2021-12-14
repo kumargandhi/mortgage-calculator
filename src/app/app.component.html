@@ -1,6 +1,6 @@
 <div id="page-container" class="container-fluid p-3">
-    <h4 id="page-title">Mortgage Calculator</h4>
-    <app-mortgage-calculator></app-mortgage-calculator>
+    <h4 id="page-title">{{ title }}</h4>
+    <app-mortgage-calculator [title]="title"></app-mortgage-calculator>
 </div>
 
 <router-outlet></router-outlet>

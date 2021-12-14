@@ -2,7 +2,20 @@
     class="data-container shadow"
     *ngIf="resultsCalculated && !errorModel.errorMsg"
 >
-    <h5 class="text-secondary">Repayment summary</h5>
+    <div class="row">
+        <div class="col-md-8">
+            <h5 class="text-secondary">Repayment summary</h5>
+        </div>
+        <div class="col-md-4">
+            <button
+                class="btn btn-primary float-end"
+                type="submit"
+                (click)="exportToPDF()"
+            >
+                Export
+            </button>
+        </div>
+    </div>
     <div class="row pt-2">
         <div class="col-md-12 text-end">
             <span class="text-primary fw-bold">
