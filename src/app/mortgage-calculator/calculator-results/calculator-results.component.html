@@ -47,7 +47,14 @@
                 <th scope="row">{{ item.monthlyResult?.month }}</th>
                 <td>{{ item.monthlyResult?.interest | nf }}</td>
                 <td>{{ item.monthlyResult?.principal | nf }}</td>
-                <td [ngClass]="{'text-white bg-success': item.monthlyResult?.balance === 0}">{{ item.monthlyResult?.balance | nf }}</td>
+                <td
+                    [ngClass]="{
+                        'text-white bg-success':
+                            item.monthlyResult?.balance === 0
+                    }"
+                >
+                    {{ item.monthlyResult?.balance | nf }}
+                </td>
             </tr>
         </tbody>
     </table>
